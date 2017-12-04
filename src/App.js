@@ -80,18 +80,21 @@ const Title = styled.span`
 	font-size: 32px;
 	font-weight: 300;
 	text-transform: uppercase;
+	margin-bottom: 12px;
 `;
 
 const BodyText = styled.span`
 	font-family: "Roboto", "Noto", sans-serif;
 	font-weight: 300;
 	font-size: 16px;
+	margin-bottom: 12px;
 `;
 
 const SmallText = styled.span`
 	font-family: "Roboto", "Noto", sans-serif;
 	font-weight: 400;
 	font-size: 12px;
+	margin-bottom: 12px;
 `;
 
 const Speaker = ({imageUrl, name, location}) =>
@@ -102,8 +105,9 @@ const Speaker = ({imageUrl, name, location}) =>
 	</div>;
 
 const Image = styled.img`
-	width: 50px;
+	width: 120px;
 	border-radius: 50%;
+	margin-bottom: 12px;
 `;
 
 const ImageAsBackground = styled.div`
