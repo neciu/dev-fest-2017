@@ -1,12 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Box = styled.div`
+	${props => props.color ? `background-color: ${props.color}` : ''};
+	
+	${props => props.size ? `flex: ${props.size}` : ''};
+	
+	display: flex;
+	flex-direction: ${props => props.direction || 'row'};
+	align-items: ${props => props.align || 'stretch'};
+	${props => props.self ? `align-self: ${props.self}` : ''};
+	${props => props.justify ? `justify-content: ${props.justify}` : ''};
+`;
+
+const Row = props => <Box {...props} direction="row"/>;
+
+const Column = props => <Box {...props} direction="column"/>;
+
 export default function App() {
 	return (
-		<div>
-			<div>
+		<Column>
+			<Column align="center">
 				<Title>Rockstar Speakers</Title>
-				<div>
+				<Row self="stretch" justify="space-around">
 					<Speaker
 						imageUrl="https://devfest.pl/images/people/mm.png"
 						name="Magdalena Mips"
@@ -27,19 +43,19 @@ export default function App() {
 						name="Wojtek Erbetowski"
 						location="Warszawa, PL"
 					/>
-				</div>
-			</div>
+				</Row>
+			</Column>
 			
-			<div>
-				<div>
+			<Row>
+				<Column size={1}>
 					<Title>Organizer</Title>
 					<BodyText>
 						GDG Warsaw with support of 4 GDGs from all around Poland is
 						proud organizer of DevFest Poland
 					</BodyText>
-				</div>
+				</Column>
 				
-				<div>
+				<Column size={1}>
 					<Title>What is GDG</Title>
 					<BodyText>
 						Google Developers Group (GDG) - is open and volunteer geek
@@ -47,31 +63,25 @@ export default function App() {
 						Google technologies with a passion. Learn more at
 						developers.google.com!
 					</BodyText>
-				</div>
-			</div>
+				</Column>
+			</Row>
 			
-			<div>
-				<div>
-					<div style={{width: '100px', height: '100px'}}>
-						<ImageAsBackground
-							imageUrl="https://devfest.pl/images/backgrounds/photos_1.jpg"
-						/>
-					</div>
-				</div>
+			<Row size="300px">
+				<Column size={2}>
+					<ImageAsBackground
+						imageUrl="https://devfest.pl/images/backgrounds/photos_1.jpg"
+					/>
+				</Column>
 				
-				<div>
-					<div style={{width: '100px', height: '100px'}}>
-						<ImageAsBackground
-							imageUrl="https://devfest.pl/images/backgrounds/photos_2.jpg"/>
-					</div>
-					<div style={{width: '100px', height: '100px'}}>
-						<ImageAsBackground
-							imageUrl="https://devfest.pl/images/backgrounds/photos_3.jpg"/>
-					</div>
-				</div>
-			</div>
+				<Column size={1}>
+					<ImageAsBackground
+						imageUrl="https://devfest.pl/images/backgrounds/photos_2.jpg"/>
+					<ImageAsBackground
+						imageUrl="https://devfest.pl/images/backgrounds/photos_3.jpg"/>
+				</Column>
+			</Row>
 		
-		</div>
+		</Column>
 	);
 }
 
@@ -98,11 +108,11 @@ const SmallText = styled.span`
 `;
 
 const Speaker = ({imageUrl, name, location}) =>
-	<div>
+	<Column align="center">
 		<Image src={imageUrl}/>
 		<BodyText>{name}</BodyText>
 		<SmallText>{location}</SmallText>
-	</div>;
+	</Column>;
 
 const Image = styled.img`
 	width: 120px;
